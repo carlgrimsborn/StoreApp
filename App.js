@@ -6,7 +6,7 @@
  * @flow strict-local
  */
 
-import React from 'react';
+import React, {useEffect} from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -28,10 +28,15 @@ import {Provider} from 'react-redux';
 import {combineReducers, createStore} from 'redux';
 import productReducer from './src/reducers/productReducer';
 import userReducer from './src/reducers/userReducer';
+import {getWerehouses, login} from './src/services/authService';
 
 const store = createStore(combineReducers({userReducer, productReducer}));
 
 const App: () => React$Node = () => {
+  useEffect(() => {
+    const sas = async () => await getWerehouses();
+    sas();
+  }, []);
   return (
     <Provider store={store}>
       <StatusBar barStyle="dark-content" />
