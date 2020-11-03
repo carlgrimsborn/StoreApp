@@ -2,10 +2,10 @@ import React, {useEffect} from 'react';
 import {View, Text, Button} from 'react-native';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {User} from '../../types';
+import LoginType from './types';
 import {setUser} from '../../actions/UserActions';
 
-const Login: React.FC = (props) => {
+const Login: React.FC<LoginType> = (props) => {
   console.log('QQ', props);
 
   return (

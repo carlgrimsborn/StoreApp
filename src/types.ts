@@ -66,3 +66,10 @@ export enum WarehouseName {
   Phantomedia = 'Phantomedia',
   Sphinxecurity = 'Sphinxecurity',
 }
+
+export interface ReduxState {
+  AllUsersReducer: User[];
+  DevReducer: Dev;
+  ProductReducer: Product[];
+  UserReducer: User;
+}
