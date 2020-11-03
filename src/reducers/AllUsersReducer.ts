@@ -2,7 +2,7 @@ import {User} from '../types';
 
 const initUsers: User[] = [
   {
-    userId: 0,
+    id: 0,
     surname: '',
     lastname: '',
     email: '',

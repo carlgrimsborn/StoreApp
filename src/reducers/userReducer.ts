@@ -1,7 +1,7 @@
 import {User} from '../types';
 
 const initUser: User = {
-  userId: 0,
+  id: 0,
   surname: '',
   lastname: '',
   email: '',

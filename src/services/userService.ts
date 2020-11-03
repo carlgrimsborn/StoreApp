@@ -2,42 +2,49 @@ import axios from 'axios';
 import {User} from '../types';
 
 export const getUsers = () => {
+  let data;
   axios
     .get('http://localhost:2000/users')
     .then((r) => {
-      return r.data;
+      data = r.data;
     })
     .catch((e) => {
       console.log(e);
       return false;
     });
+  return data;
 };
 
 export const editUser = (user: User) => {
+  let data;
   axios
     .put('http://localhost:2000/user', user)
     .then((r) => {
-      return r.data;
+      data = r.data;
     })
     .catch((e) => {
       console.log(e);
       return false;
     });
+  return data;
 };
 
 export const deleteUser = (id: string) => {
+  let data;
   axios
     .delete('http://localhost:2000/user', {params: {id: id}})
     .then((r) => {
-      return r.data;
+      data = r.data;
     })
     .catch((e) => {
       console.log(e);
       return false;
     });
+  return data;
 };
 
 export const login = async (email: string, password: string) => {
+  let data;
   await axios
     .post(
       'http://localhost:2000/login',
@@ -51,27 +58,31 @@ export const login = async (email: string, password: string) => {
     )
     .then((resp) => {
       console.log(resp.data);
-      return resp.data;
+      data = resp.data;
     })
     .catch((e) => {
       console.log(e);
       return false;
     });
+  return data;
 };
 
 export const register = async (user: User) => {
+  let data;
   await axios
     .post('http://localhost:2000/register', user)
     .then((r) => {
-      return r.data;
+      data = r.data;
     })
     .catch((e) => {
       console.log(e);
       return false;
     });
+  return data;
 };
 
 export const loginDev = async (email: string, password: string) => {
+  let data;
   await axios
     .post(
       'http://localhost:2000/login/dev',
@@ -85,10 +96,11 @@ export const loginDev = async (email: string, password: string) => {
     )
     .then((resp) => {
       console.log(resp.data);
-      return resp.data;
+      data = resp.data;
     })
     .catch((e) => {
       console.log(e);
       return false;
     });
+  return data;
 };
