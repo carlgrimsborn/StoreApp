@@ -28,14 +28,14 @@ import {Provider} from 'react-redux';
 import {combineReducers, createStore} from 'redux';
 import productReducer from './src/reducers/productReducer';
 import userReducer from './src/reducers/userReducer';
-import {getWerehouses, login} from './src/services/authService';
+import {login} from './src/services/authService';
 
 const store = createStore(combineReducers({userReducer, productReducer}));
 
 const App: () => React$Node = () => {
   useEffect(() => {
-    const sas = async () => await getWerehouses();
-    sas();
+    const sas = async () => await login('King.Clifford@gmail.com', '12345');
+    var u = sas();
   }, []);
   return (
     <Provider store={store}>
