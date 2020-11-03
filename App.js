@@ -38,10 +38,6 @@ const store = createStore(
 );
 
 const App: () => React$Node = () => {
-  useEffect(() => {
-    const sas = async () => await login('King.Clifford@gmail.com', '12345');
-    var u = sas();
-  }, []);
   return (
     <Provider store={store}>
       <StatusBar barStyle="dark-content" />
