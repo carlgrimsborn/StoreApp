@@ -26,11 +26,16 @@ import {
 
 import {Provider} from 'react-redux';
 import {combineReducers, createStore} from 'redux';
-import productReducer from './src/reducers/productReducer';
-import userReducer from './src/reducers/userReducer';
-import {login} from './src/services/authService';
+import ProductReducer from './src/reducers/ProductReducer';
+import UserReducer from './src/reducers/UserReducer';
+import DevReducer from './src/reducers/DevReducer';
+import AllUsersReducer from './src/reducers/AllUsersReducer';
+import {login} from './src/services/UserService';
+import Login from './src/features/login/Login';
 
-const store = createStore(combineReducers({userReducer, productReducer}));
+const store = createStore(
+  combineReducers({UserReducer, ProductReducer, DevReducer, AllUsersReducer}),
+);
 
 const App: () => React$Node = () => {
   useEffect(() => {
@@ -53,6 +58,7 @@ const App: () => React$Node = () => {
           <View style={styles.body}>
             <View style={styles.sectionContainer}>
               <Text style={styles.sectionTitle}>Step One</Text>
+              <Login />
               <Text style={styles.sectionDescription}>
                 Edit <Text style={styles.highlight}>App.js</Text> to change this
                 screen and then come back to see your edits.

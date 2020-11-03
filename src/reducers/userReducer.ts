@@ -1,37 +1,30 @@
-const initState = {
-  value: 2,
+import {User} from '../types';
+
+const initUser: User = {
+  userId: 0,
+  surname: '',
+  lastname: '',
+  email: '',
+  password: '',
+  items: [],
 };
 
-const userReducer = (state = initState, action) => {
-  // if (action.type === "POST_USERS") {
-  //     const users = action.users
-  //     return {
-  //         ...state,
-  //         users: users
-  //     }
-  // }
-  // if (action.type === "LOGIN_STATUS") {
-  //     const status = action.status
-  //     return {
-  //         ...state,
-  //         isLoggedIn: status
-  //     }
-  // }
-  // if (action.type === "SET_USER") {
-  //     const user = action.user
-  //     return {
-  //         ...state,
-  //         currentUser: user
-  //     }
-  // }
-  // if (action.type === "RESET_STORE") {
-  //     return {
-  //         ...state,
-  //         initState
-  //     }
-  // }
+const UserReducer = (user: User = initUser, action: any) => {
+  if (action.type === 'SET_USER') {
+    const newUser = action.user;
+    return {
+      ...user,
+      ...newUser,
+    };
+  }
+  if (action.type === 'CLEAN_USER') {
+    return {
+      ...user,
+      initUser,
+    };
+  }
 
-  return state;
+  return user;
 };
 
-export default userReducer;
+export default UserReducer;

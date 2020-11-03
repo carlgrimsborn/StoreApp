@@ -6,6 +6,13 @@ export interface User {
   password: string;
   items: Product[];
 }
+
+export interface Dev {
+  name: string;
+  email: string;
+  password: string;
+}
+
 export interface Product {
   id: number;
   name: string;

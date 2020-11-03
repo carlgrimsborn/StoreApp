@@ -1,37 +1,34 @@
-const initState = {
-  value: 3,
+import {Product, ProductStatus, ProductType, WarehouseName} from '../types';
+
+const initProducts: Product[] = [
+  {
+    id: 0,
+    name: '',
+    ownerId: '',
+    period: {fromDate: '', toDate: ''},
+    size: {height: 0, length: 0, width: 0},
+    status: ProductStatus.ACTIVE,
+    type: ProductType.Furniture,
+    warehouse: WarehouseName.Solstice_Enterprises,
+  },
+];
+
+const ProductReducer = (products = initProducts, action: any) => {
+  if (action.type === 'SET_PRODUCTS') {
+    const newProducts = action.products;
+    return {
+      ...products,
+      ...newProducts,
+    };
+  }
+  if (action.type === 'CLEAN_PRODUCTS') {
+    return {
+      ...products,
+      initProducts,
+    };
+  }
+
+  return products;
 };
 
-const productReducer = (state = initState, action) => {
-  // if (action.type === "POST_USERS") {
-  //     const users = action.users
-  //     return {
-  //         ...state,
-  //         users: users
-  //     }
-  // }
-  // if (action.type === "LOGIN_STATUS") {
-  //     const status = action.status
-  //     return {
-  //         ...state,
-  //         isLoggedIn: status
-  //     }
-  // }
-  // if (action.type === "SET_USER") {
-  //     const user = action.user
-  //     return {
-  //         ...state,
-  //         currentUser: user
-  //     }
-  // }
-  // if (action.type === "RESET_STORE") {
-  //     return {
-  //         ...state,
-  //         initState
-  //     }
-  // }
-
-  return state;
-};
-
-export default productReducer;
+export default ProductReducer;

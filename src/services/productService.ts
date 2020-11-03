@@ -1,4 +1,3 @@
-import Axios from 'axios';
 import axios from 'axios';
 import {Product} from '../types';
 
