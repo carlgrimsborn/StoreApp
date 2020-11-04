@@ -11,12 +11,45 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {connect} from 'react-redux';
 import {AuthType, ReduxState} from '../Types';
+import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
+import {
+  faUser,
+  faBook,
+  faUsers,
+  faWarehouse,
+} from '@fortawesome/free-solid-svg-icons';
 
 const NavigationComponent: React.FC<{state: ReduxState}> = (props) => {
   const Stack = createStackNavigator();
   const Tab = createBottomTabNavigator();
   const DashboardStack = () => (
-    <Tab.Navigator>
+    <Tab.Navigator
+      screenOptions={({route}) => ({
+        tabBarIcon: () => {
+          if (route.name === 'Products') {
+            return (
+              <FontAwesomeIcon icon={faBook} color="grey"></FontAwesomeIcon>
+            );
+          }
+          if (route.name === 'Users') {
+            return (
+              <FontAwesomeIcon icon={faUsers} color="grey"></FontAwesomeIcon>
+            );
+          }
+          if (route.name === 'Warehouses') {
+            return (
+              <FontAwesomeIcon
+                icon={faWarehouse}
+                color="grey"></FontAwesomeIcon>
+            );
+          }
+          if (route.name === 'Me') {
+            return (
+              <FontAwesomeIcon icon={faUser} color="grey"></FontAwesomeIcon>
+            );
+          }
+        },
+      })}>
       <Tab.Screen name="Products" component={AppProductsScreen} />
       <Tab.Screen name="Users" component={AppUsersScreen} />
       <Tab.Screen name="Warehouses" component={WarehouseScreen} />
@@ -24,7 +57,21 @@ const NavigationComponent: React.FC<{state: ReduxState}> = (props) => {
     </Tab.Navigator>
   );
   const MainStack = () => (
-    <Tab.Navigator>
+    <Tab.Navigator
+      screenOptions={({route}) => ({
+        tabBarIcon: () => {
+          if (route.name === 'My items') {
+            return (
+              <FontAwesomeIcon icon={faBook} color="grey"></FontAwesomeIcon>
+            );
+          }
+          if (route.name === 'Me') {
+            return (
+              <FontAwesomeIcon icon={faUser} color="grey"></FontAwesomeIcon>
+            );
+          }
+        },
+      })}>
       <Tab.Screen name="My items" component={ProductScreen} />
       <Tab.Screen name="Me" component={UserScreen} />
     </Tab.Navigator>
@@ -34,7 +81,6 @@ const NavigationComponent: React.FC<{state: ReduxState}> = (props) => {
       <Stack.Screen name="Welcome" component={LoginScreen} />
     </Stack.Navigator>
   );
-  console.log('QQQ', props);
   return (
     <NavigationContainer>
       <Stack.Navigator>
