@@ -1,4 +1,4 @@
-import {Product, ProductStatus, ProductType, WarehouseName} from '../types';
+import {Product, ProductStatus, ProductType, WarehouseName} from '../Types';
 
 const initProducts: Product[] = [
   {

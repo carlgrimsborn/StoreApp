@@ -2,12 +2,12 @@ import React, {useEffect} from 'react';
 import {View, Text, Button} from 'react-native';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import LoginType from './types';
+import LoginType from './Types';
 import {setUser} from '../../actions/UserActions';
 import {login} from '../../services/UserService';
-import {ReduxState, User} from '../../types';
+import {ReduxState} from '../../Types';
 
-const Login: React.FC<LoginType> = (props) => {
+const LoginScreen: React.FC<LoginType> = (props) => {
   return (
     <View>
       <Text>{props.state.UserReducer.id}</Text>
@@ -35,4 +35,4 @@ const mapDispatchToProps = (dispatch: any) => {
   return bindActionCreators({setUser}, dispatch);
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(LoginScreen);

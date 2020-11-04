@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {Product} from '../types';
+import {Product} from '../Types';
 
 export const getProducts = () => {
   axios

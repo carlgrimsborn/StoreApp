@@ -1,4 +1,4 @@
-import {Dev} from '../types';
+import {Dev} from '../Types';
 
 export const setDev = (dev: Dev) => {
   return {

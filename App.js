@@ -30,11 +30,17 @@ import ProductReducer from './src/reducers/ProductReducer';
 import UserReducer from './src/reducers/UserReducer';
 import DevReducer from './src/reducers/DevReducer';
 import AllUsersReducer from './src/reducers/AllUsersReducer';
-import {login} from './src/services/UserService';
-import Login from './src/features/login/Login';
+import WarehouseReducer from './src/reducers/WarehouseReducer';
+import LoginScreen from './src/features/login/LoginScreen';
 
 const store = createStore(
-  combineReducers({UserReducer, ProductReducer, DevReducer, AllUsersReducer}),
+  combineReducers({
+    UserReducer,
+    ProductReducer,
+    DevReducer,
+    AllUsersReducer,
+    WarehouseReducer,
+  }),
 );
 
 const App: () => React$Node = () => {
@@ -54,7 +60,7 @@ const App: () => React$Node = () => {
           <View style={styles.body}>
             <View style={styles.sectionContainer}>
               <Text style={styles.sectionTitle}>Step One</Text>
-              <Login />
+              <LoginScreen />
               <Text style={styles.sectionDescription}>
                 Edit <Text style={styles.highlight}>App.js</Text> to change this
                 screen and then come back to see your edits.

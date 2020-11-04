@@ -1,4 +1,4 @@
-import {User} from '../types';
+import {User} from '../Types';
 
 export const setUsers = (users: User[]) => {
   return {

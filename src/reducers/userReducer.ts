@@ -1,4 +1,4 @@
-import {User} from '../types';
+import {User} from '../Types';
 
 const initUser: User = {
   id: 0,

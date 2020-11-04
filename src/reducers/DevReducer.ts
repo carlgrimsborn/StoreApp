@@ -1,4 +1,4 @@
-import {Dev, User} from '../types';
+import {Dev, User} from '../Types';
 
 const initDev: Dev = {
   name: '',
