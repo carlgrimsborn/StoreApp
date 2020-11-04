@@ -25,10 +25,10 @@ export interface Product {
 }
 
 export enum ProductType {
-  Furniture,
-  Electronics,
-  Vehicle,
-  Cardboard,
+  Furniture = 'Furniture',
+  Electronics = 'Electronics',
+  Vehicle = 'Vehicle',
+  Cardboard = 'Cardboard',
 }
 
 export interface ProductSize {
@@ -38,8 +38,8 @@ export interface ProductSize {
 }
 
 export enum ProductStatus {
-  ACTIVE,
-  INACTIVE,
+  ACTIVE = 'ACTIVE',
+  INACTIVE = 'INACTIVE',
 }
 
 export interface ProductPeriod {
