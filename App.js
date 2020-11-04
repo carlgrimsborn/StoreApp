@@ -32,6 +32,15 @@ import DevReducer from './src/reducers/DevReducer';
 import AllUsersReducer from './src/reducers/AllUsersReducer';
 import WarehouseReducer from './src/reducers/WarehouseReducer';
 import LoginScreen from './src/features/login/LoginScreen';
+import {NavigationContainer} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import AppProductsScreen from './src/features/dashboard/screens/AppProductsScreen';
+import AppUsersScreen from './src/features/dashboard/screens/AppUsersScreen';
+import DevScreen from './src/features/dashboard/screens/DevScreen';
+import WarehouseScreen from './src/features/dashboard/screens/WarehouseScreen';
+import UserScreen from './src/features/main/screens/UserScreen';
+import ProductScreen from './src/features/main/screens/ProductScreen';
 
 const store = createStore(
   combineReducers({
@@ -43,92 +52,35 @@ const store = createStore(
   }),
 );
 
+const Stack = createStackNavigator();
+const Tab = createBottomTabNavigator();
+
 const App: () => React$Node = () => {
+  const Dashboard = () => (
+    <Tab.Navigator>
+      <Tab.Screen name="Products" component={AppProductsScreen} />
+      <Tab.Screen name="Users" component={AppUsersScreen} />
+      <Tab.Screen name="Warehouses" component={WarehouseScreen} />
+      <Tab.Screen name="Me" component={DevScreen} />
+    </Tab.Navigator>
+  );
+  const Main = () => (
+    <Tab.Navigator>
+      <Tab.Screen name="My items" component={ProductScreen} />
+      <Tab.Screen name="Me" component={UserScreen} />
+    </Tab.Navigator>
+  );
   return (
     <Provider store={store}>
-      <StatusBar barStyle="dark-content" />
-      <SafeAreaView>
-        <ScrollView
-          contentInsetAdjustmentBehavior="automatic"
-          style={styles.scrollView}>
-          <Header />
-          {global.HermesInternal == null ? null : (
-            <View style={styles.engine}>
-              <Text style={styles.footer}>Engine: Hermes</Text>
-            </View>
-          )}
-          <View style={styles.body}>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Step One</Text>
-              <LoginScreen />
-              <Text style={styles.sectionDescription}>
-                Edit <Text style={styles.highlight}>App.js</Text> to change this
-                screen and then come back to see your edits.
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>See Your Changes</Text>
-              <Text style={styles.sectionDescription}>
-                <ReloadInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Debug</Text>
-              <Text style={styles.sectionDescription}>
-                <DebugInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Learn More</Text>
-              <Text style={styles.sectionDescription}>
-                Read the docs to discover what to do next:
-              </Text>
-            </View>
-            <LearnMoreLinks />
-          </View>
-        </ScrollView>
-      </SafeAreaView>
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen name="Login" component={LoginScreen} />
+          <Stack.Screen name="Dashboard" component={Dashboard} />
+          <Stack.Screen name="Profile" component={Main} />
+        </Stack.Navigator>
+      </NavigationContainer>
     </Provider>
   );
 };
-
-const styles = StyleSheet.create({
-  scrollView: {
-    backgroundColor: Colors.lighter,
-  },
-  engine: {
-    position: 'absolute',
-    right: 0,
-  },
-  body: {
-    backgroundColor: Colors.white,
-  },
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-    color: Colors.black,
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-    color: Colors.dark,
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-  footer: {
-    color: Colors.dark,
-    fontSize: 12,
-    fontWeight: '600',
-    padding: 4,
-    paddingRight: 12,
-    textAlign: 'right',
-  },
-});
 
 export default App;

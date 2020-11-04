@@ -7,15 +7,15 @@ export interface AppUsersScreenProps {
   setUser: (user: User) => void;
   state: ReduxState;
 }
-export interface ProductScreenProps {
-  navigation: BottomTabNavigationProp<DashboardStack, 'ProductScreen'>;
+export interface AppProductsScreenProps {
+  navigation: BottomTabNavigationProp<DashboardStack, 'AppProductsScreen'>;
 
   setProducts: (products: Product[]) => void;
   state: ReduxState;
 }
 
-export interface UserScreenProps {
-  navigation: BottomTabNavigationProp<DashboardStack, 'UserScreen'>;
+export interface DevScreenProps {
+  navigation: BottomTabNavigationProp<DashboardStack, 'DevScreen'>;
   state: ReduxState;
   cleanUsers: () => void;
   cleanDev: () => void;

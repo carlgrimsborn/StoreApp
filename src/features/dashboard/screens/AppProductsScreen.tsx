@@ -3,10 +3,10 @@ import {View} from 'react-native';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {ReduxState} from '../../../types';
-import {ProductScreenProps} from '../Types';
+import {AppProductsScreenProps} from '../Types';
 import {setProducts} from '../../../actions/ProductActions';
 
-const ProductScreen: React.FC<ProductScreenProps> = () => {
+const AppProductsScreen: React.FC<AppProductsScreenProps> = () => {
   return <View></View>;
 };
 
@@ -20,4 +20,4 @@ const mapDispatchToProps = (dispatch: any) => {
   return bindActionCreators({setProducts}, dispatch);
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProductScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(AppProductsScreen);

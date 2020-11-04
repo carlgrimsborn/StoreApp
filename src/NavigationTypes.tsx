@@ -8,8 +8,8 @@ export type MainStack = {
 };
 
 export type DashboardStack = {
-  ProductScreen: undefined;
+  AppProductsScreen: undefined;
   AppUsersScreen: undefined;
   WarehouseScreen: undefined;
-  UserScreen: undefined;
+  DevScreen: undefined;
 };
