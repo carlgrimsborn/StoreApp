@@ -59,6 +59,16 @@ export interface Range {
   toValue: number;
 }
 
+export interface Authentication {
+  authenticated: boolean;
+  authType: AuthType;
+}
+
+export enum AuthType {
+  USER,
+  DEV,
+}
+
 export enum WarehouseName {
   Hatchworks = 'Hatchworks',
   Solstice_Enterprises = 'Solstice Enterprises',
@@ -73,4 +83,5 @@ export interface ReduxState {
   ProductReducer: Product[];
   UserReducer: User;
   WarehouseReducer: Warehouse;
+  AuthReducer: Authentication;
 }
