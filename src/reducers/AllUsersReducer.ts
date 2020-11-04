@@ -14,16 +14,10 @@ const initUsers: User[] = [
 const AllUsersReducer = (users: User[] = initUsers, action: any) => {
   if (action.type === 'SET_USERS') {
     const newUsers = action.users;
-    return {
-      ...users,
-      ...newUsers,
-    };
+    return [...newUsers];
   }
   if (action.type === 'CLEAN_USERS') {
-    return {
-      ...users,
-      initUsers,
-    };
+    return [...initUsers];
   }
 
   return users;

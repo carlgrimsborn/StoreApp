@@ -11,13 +11,13 @@ const DevReducer = (dev: Dev = initDev, action: any) => {
     const newDev = action.dev;
     return {
       ...dev,
-      newDev,
+      ...newDev,
     };
   }
   if (action.type === 'CLEAN_DEV') {
     return {
       ...dev,
-      initDev,
+      ...initDev,
     };
   }
   return dev;

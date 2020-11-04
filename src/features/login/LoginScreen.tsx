@@ -7,13 +7,50 @@ import LoginScreenProps from './Types';
 import {setUser} from '../../actions/UserActions';
 import {setDev} from '../../actions/DevActions';
 import {setAuth} from '../../actions/AuthActions';
-import {login, loginDev} from '../../services/UserService';
-import {AuthType, ReduxState} from '../../Types';
+import {setWarehouses} from '../../actions/WarehouseActions';
+import {setUsers} from '../../actions/AllUsersActions';
+import {setProducts} from '../../actions/ProductActions';
+import {getUsers, login, loginDev} from '../../services/UserService';
+import {AuthType, Product, ReduxState, User} from '../../Types';
+import {getProducts} from '../../services/ProductService';
+import {getWarehouses} from '../../services/WarehouseService';
 
 const LoginScreen: React.FC<LoginScreenProps> = (props) => {
-  const [email, setEmail] = useState('King.Clifford@gmail.com');
+  const [email, setEmail] = useState('123@123.com'); //King.Clifford@gmail.com
   const [password, setPassword] = useState('12345');
   const [loading, setLoading] = useState(false);
+
+  const doLoginUser = async () => {
+    setLoading(true);
+    const resp = await login(email, password);
+    if (resp) {
+      props.setUser(resp);
+      setLoading(false);
+      props.setAuth({authenticated: true, authType: AuthType.USER});
+    } else {
+      setLoading(false);
+      alert('Error logging in');
+    }
+  };
+
+  const doLoginDev = async () => {
+    setLoading(true);
+    const resp = await loginDev(email, password);
+    const respProd = await getProducts();
+    const respUsers = await getUsers();
+    const respWarehouses = await getWarehouses();
+    if (resp && respProd && respUsers && respWarehouses) {
+      props.setDev(resp);
+      props.setProducts(respProd);
+      props.setUsers(respUsers);
+      props.setWarehouses(respWarehouses);
+      props.setAuth({authenticated: true, authType: AuthType.DEV});
+    } else {
+      setLoading(false);
+      alert('Error logging in');
+    }
+  };
+
   return (
     <View
       style={{
@@ -36,32 +73,14 @@ const LoginScreen: React.FC<LoginScreenProps> = (props) => {
           style={{margin: 3}}
           title="Login"
           onPress={async () => {
-            setLoading(true);
-            const resp = await login(email, password);
-            if (resp) {
-              setLoading(false);
-              props.setUser(resp);
-              props.setAuth({authenticated: true, authType: AuthType.USER});
-            } else {
-              setLoading(false);
-              alert('Error logging in');
-            }
+            await doLoginUser();
           }}></Button>
         <Button
           style={{margin: 3}}
           title="Login Dev"
           buttonStyle={{backgroundColor: 'orange'}}
           onPress={async () => {
-            setLoading(true);
-            const resp = await loginDev(email, password);
-            if (resp) {
-              setLoading(false);
-              props.setDev(resp);
-              props.setAuth({authenticated: true, authType: AuthType.DEV});
-            } else {
-              setLoading(false);
-              alert('Error logging in');
-            }
+            await doLoginDev();
           }}></Button>
       </View>
       {loading ? (
@@ -85,7 +104,10 @@ const mapStateToProps = (state: ReduxState) => {
 };
 
 const mapDispatchToProps = (dispatch: any) => {
-  return bindActionCreators({setUser, setDev, setAuth}, dispatch);
+  return bindActionCreators(
+    {setUser, setDev, setAuth, setUsers, setProducts, setWarehouses},
+    dispatch,
+  );
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginScreen);

@@ -82,6 +82,6 @@ export interface ReduxState {
   DevReducer: Dev;
   ProductReducer: Product[];
   UserReducer: User;
-  WarehouseReducer: Warehouse;
+  WarehouseReducer: Warehouse[];
   AuthReducer: Authentication;
 }

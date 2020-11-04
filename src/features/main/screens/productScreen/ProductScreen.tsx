@@ -5,7 +5,7 @@ import {bindActionCreators} from 'redux';
 import {ReduxState} from '../../../../Types';
 import {ProductScreenProps} from '../../Types';
 import {setUser} from '../../../../actions/UserActions';
-import ProductCard from './components/ProductCard';
+import ProductCard from '../../../../components/ProductCard';
 import {ScrollView} from 'react-native-gesture-handler';
 
 const ProductScreen: React.FC<ProductScreenProps> = (props) => {

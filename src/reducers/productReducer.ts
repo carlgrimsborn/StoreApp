@@ -16,16 +16,10 @@ const initProducts: Product[] = [
 const ProductReducer = (products = initProducts, action: any) => {
   if (action.type === 'SET_PRODUCTS') {
     const newProducts = action.products;
-    return {
-      ...products,
-      ...newProducts,
-    };
+    return [...newProducts];
   }
   if (action.type === 'CLEAN_PRODUCTS') {
-    return {
-      ...products,
-      initProducts,
-    };
+    return [...initProducts];
   }
 
   return products;

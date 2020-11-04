@@ -1,33 +1,29 @@
-import {Dev, ProductType, User, Warehouse, WarehouseName} from '../Types';
+import {ProductType, Warehouse, WarehouseName} from '../Types';
 
-const initWarehouse: Warehouse = {
-  name: WarehouseName.Hatchworks,
-  items: [],
-  productSizeRange: {
-    fromValue: 0,
-    toValue: 0,
+const initWarehouses: Warehouse[] = [
+  {
+    name: WarehouseName.Hatchworks,
+    items: [],
+    productSizeRange: {
+      fromValue: 0,
+      toValue: 0,
+    },
+    productTypes: [ProductType.Cardboard],
   },
-  productTypes: [ProductType.Cardboard],
-};
+];
 
 const WarehouseReducer = (
-  warehouse: Warehouse = initWarehouse,
+  warehouses: Warehouse[] = initWarehouses,
   action: any,
 ) => {
-  if (action.type === 'SET_WAREHOUSE') {
-    const newWarehouse = action.warehouse;
-    return {
-      ...initWarehouse,
-      newWarehouse,
-    };
+  if (action.type === 'SET_WAREHOUSES') {
+    const newWarehouses = action.warehouses;
+    return [...newWarehouses];
   }
-  if (action.type === 'CLEAN_WAREHOUSE') {
-    return {
-      ...warehouse,
-      initWarehouse,
-    };
+  if (action.type === 'CLEAN_WAREHOUSES') {
+    return [...initWarehouses];
   }
-  return warehouse;
+  return warehouses;
 };
 
 export default WarehouseReducer;

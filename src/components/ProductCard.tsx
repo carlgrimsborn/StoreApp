@@ -2,7 +2,7 @@ import React from 'react';
 import {Card} from 'react-native-elements';
 import {View, Text} from 'react-native';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
-import {Product, ProductType} from '../../../../../Types';
+import {Product, ProductType} from '../Types';
 import {
   faCouch,
   faVrCardboard,
@@ -26,7 +26,7 @@ const calculateIcon = (item: Product) => {
       return (
         <FontAwesomeIcon
           icon={faVrCardboard}
-          color="yellow"
+          color="orange"
           size={30}
           style={{top: -5}}
         />

@@ -1,6 +1,6 @@
 import {BottomTabNavigationProp} from '@react-navigation/bottom-tabs';
 import {DashboardStack} from '../../navigation/NavigationTypes';
-import {User, ReduxState, Product} from '../../types';
+import {User, ReduxState, Product, Authentication} from '../../types';
 
 export interface AppUsersScreenProps {
   navigation: BottomTabNavigationProp<DashboardStack, 'AppUsersScreen'>;
@@ -20,6 +20,8 @@ export interface DevScreenProps {
   cleanUsers: () => void;
   cleanDev: () => void;
   cleanProducts: () => void;
+  cleanWarehouses: () => void;
+  setAuth: (auth: Authentication) => void;
 }
 export interface WarehouseScreenProps {
   navigation: BottomTabNavigationProp<DashboardStack, 'WarehouseScreen'>;

@@ -2,7 +2,7 @@ import {User} from '../Types';
 
 export const setUsers = (users: User[]) => {
   return {
-    type: 'SET_USER',
+    type: 'SET_USERS',
     users: users,
   };
 };

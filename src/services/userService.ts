@@ -1,9 +1,9 @@
 import axios from 'axios';
 import {User} from '../types';
 
-export const getUsers = () => {
+export const getUsers = async () => {
   let data;
-  axios
+  await axios
     .get('http://localhost:2000/users')
     .then((r) => {
       data = r.data;
@@ -15,9 +15,9 @@ export const getUsers = () => {
   return data;
 };
 
-export const editUser = (user: User) => {
+export const editUser = async (user: User) => {
   let data;
-  axios
+  await axios
     .put('http://localhost:2000/user', user)
     .then((r) => {
       data = r.data;

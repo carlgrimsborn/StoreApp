@@ -1,54 +1,62 @@
 import axios from 'axios';
 import {Product} from '../Types';
 
-export const getProducts = () => {
-  axios
+export const getProducts = async () => {
+  let data;
+  await axios
     .get('http://localhost:2000/products')
     .then((r) => {
-      return r.data;
+      data = r.data;
     })
     .catch((e) => {
       console.log(e);
       return false;
     });
+  return data;
 };
 
-export const postProduct = (product: Product) => {
-  axios
+export const postProduct = async (product: Product) => {
+  let data;
+  await axios
     .post('http://localhost:2000/product', product)
     .then((r) => {
-      return r.data;
+      data = r.data;
     })
     .catch((e) => {
       console.log(e);
       return false;
     });
+  return data;
 };
 
-export const editProduct = (product: Product) => {
-  axios
+export const editProduct = async (product: Product) => {
+  let data;
+  await axios
     .put('http://localhost:2000/product', product)
     .then((r) => {
-      return r.data;
+      data = r.data;
     })
     .catch((e) => {
       console.log(e);
       return false;
     });
+  return data;
 };
 
-export const deleteProduct = (id: string) => {
-  axios
+export const deleteProduct = async (id: string) => {
+  let data;
+  await axios
     .delete('http://localhost:2000/product', {
       params: {
         id: id,
       },
     })
     .then((r) => {
-      return r.data;
+      data = r.data;
     })
     .catch((e) => {
       console.log(e);
       return false;
     });
+  return data;
 };
