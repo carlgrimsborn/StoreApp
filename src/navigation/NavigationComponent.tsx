@@ -47,7 +47,6 @@ const NavigationComponent: React.FC<{state: ReduxState}> = (props) => {
           props.state.AuthReducer.authType === AuthType.DEV ? (
           <Stack.Screen name="Dashboard" component={DashboardStack} />
         ) : null}
-        <Stack.Screen name="Dashboard" component={DashboardStack} />
       </Stack.Navigator>
     </NavigationContainer>
   );
