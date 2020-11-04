@@ -1,6 +1,6 @@
 import {Product} from '../Types';
 
-export const setProduct = (products: Product[]) => {
+export const setProducts = (products: Product[]) => {
   return {
     type: 'SET_PRODUCTS',
     products: products,

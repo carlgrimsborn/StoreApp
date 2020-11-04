@@ -7,7 +7,7 @@ export const setDev = (dev: Dev) => {
   };
 };
 
-export const cleanProducts = () => {
+export const cleanDev = () => {
   return {
     type: 'CLEAN_DEV',
   };

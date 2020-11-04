@@ -2,12 +2,12 @@ import React, {useEffect} from 'react';
 import {View, Text, Button} from 'react-native';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import LoginType from './Types';
+import LoginScreenProps from './Types';
 import {setUser} from '../../actions/UserActions';
 import {login} from '../../services/UserService';
 import {ReduxState} from '../../Types';
 
-const LoginScreen: React.FC<LoginType> = (props) => {
+const LoginScreen: React.FC<LoginScreenProps> = (props) => {
   return (
     <View>
       <Text>{props.state.UserReducer.id}</Text>
