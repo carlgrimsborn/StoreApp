@@ -3,7 +3,7 @@ import AppProductsScreen from '../features/dashboard/screens/AppProductsScreen';
 import AppUsersScreen from '../features/dashboard/screens/AppUsersScreen';
 import DevScreen from '../features/dashboard/screens/DevScreen';
 import WarehouseScreen from '../features/dashboard/screens/WarehouseScreen';
-import UserScreen from '../features/main/screens/UserScreen';
+import UserScreen from '../features/main/screens/userScreen/UserScreen';
 import ProductScreen from '../features/main/screens/productScreen/ProductScreen';
 import LoginScreen from '../features/login/LoginScreen';
 import {NavigationContainer} from '@react-navigation/native';

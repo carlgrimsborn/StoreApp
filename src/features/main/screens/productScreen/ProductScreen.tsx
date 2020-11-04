@@ -6,13 +6,16 @@ import {ReduxState} from '../../../../Types';
 import {ProductScreenProps} from '../../Types';
 import {setUser} from '../../../../actions/UserActions';
 import ProductCard from './components/ProductCard';
+import {ScrollView} from 'react-native-gesture-handler';
 
 const ProductScreen: React.FC<ProductScreenProps> = (props) => {
   return (
-    <View>
-      {props.state.UserReducer.items.map((item) => (
-        <ProductCard item={item}></ProductCard>
-      ))}
+    <View style={{flex: 1}}>
+      <ScrollView style={{flex: 1}}>
+        {props.state.UserReducer.items.map((item) => (
+          <ProductCard item={item} key={item.id}></ProductCard>
+        ))}
+      </ScrollView>
     </View>
   );
 };

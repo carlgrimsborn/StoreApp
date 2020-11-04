@@ -11,7 +11,6 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 const calculateIcon = (item: Product) => {
-  console.log('WWW', typeof item.type);
   switch (item.type) {
     case ProductType.Furniture:
       return (
