@@ -1,5 +1,5 @@
 import {BottomTabNavigationProp} from '@react-navigation/bottom-tabs';
-import {DashboardStack, MainStack} from '../../navigation/NavigationTypes';
+import {MainStack} from '../../navigation/NavigationTypes';
 import {Authentication, ReduxState} from '../../types';
 
 export interface ProductScreenProps {

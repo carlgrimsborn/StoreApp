@@ -21,7 +21,7 @@ const WarehouseReducer = (
     return [...newWarehouses];
   }
   if (action.type === 'CLEAN_WAREHOUSES') {
-    return [...initWarehouses];
+    return [...warehouses, ...initWarehouses];
   }
   return warehouses;
 };

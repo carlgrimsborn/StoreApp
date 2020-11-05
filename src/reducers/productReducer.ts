@@ -19,7 +19,7 @@ const ProductReducer = (products = initProducts, action: any) => {
     return [...newProducts];
   }
   if (action.type === 'CLEAN_PRODUCTS') {
-    return [...initProducts];
+    return [...products, ...initProducts];
   }
 
   return products;

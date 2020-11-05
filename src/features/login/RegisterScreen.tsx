@@ -27,7 +27,6 @@ const RegisterScreen: React.FC<RegisterScreenProps> = (props) => {
     });
     if (resp) {
       console.log('RESP', resp);
-      // @ts-ignore
       props.setUser(resp);
       setLoading(false);
       props.setAuth({authenticated: true, authType: AuthType.USER});

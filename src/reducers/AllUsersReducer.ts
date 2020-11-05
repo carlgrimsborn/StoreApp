@@ -17,7 +17,7 @@ const AllUsersReducer = (users: User[] = initUsers, action: any) => {
     return [...newUsers];
   }
   if (action.type === 'CLEAN_USERS') {
-    return [...initUsers];
+    return [...users, ...initUsers];
   }
 
   return users;

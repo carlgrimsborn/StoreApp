@@ -20,7 +20,7 @@ const UserReducer = (user: User = initUser, action: any) => {
   if (action.type === 'CLEAN_USER') {
     return {
       ...user,
-      initUser,
+      ...initUser,
     };
   }
 
