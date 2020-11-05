@@ -16,7 +16,7 @@ import {Button, Input} from 'react-native-elements';
 import {Modal, View, StyleSheet, Text, TouchableHighlight} from 'react-native';
 
 const ProductScreen: React.FC<ProductScreenProps> = (props) => {
-  const [modalVisible, setModalVisible] = useState(true);
+  const [modalVisible, setModalVisible] = useState(false);
   const [name, setName] = useState<string>('');
   const [toDate, seToDate] = useState<string>();
   const [fromDate, setFromDate] = useState<string>();
@@ -85,6 +85,7 @@ const ProductScreen: React.FC<ProductScreenProps> = (props) => {
               style={{...styles.openButton, backgroundColor: '#2196F3'}}
               onPress={() => {
                 setModalVisible(!modalVisible);
+                alert('TODO: POST');
               }}>
               <Text style={styles.textStyle}>Done</Text>
             </TouchableHighlight>
