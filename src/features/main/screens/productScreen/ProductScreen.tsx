@@ -34,8 +34,8 @@ const ProductScreen: React.FC<ProductScreenProps> = (props) => {
     {title: 'Vehicle', value: 'Vehicle'},
     {title: 'Cardboard', value: 'Cardboard'},
     {
-      title: 'Cancel',
-      containerStyle: {backgroundColor: 'red'},
+      title: 'Done',
+      containerStyle: {backgroundColor: 'green'},
       titleStyle: {color: 'white'},
       onPress: () => setDropdownIsVisible(false),
     },
@@ -148,7 +148,7 @@ const ProductScreen: React.FC<ProductScreenProps> = (props) => {
               key={i}
               containerStyle={l.containerStyle}
               onPress={() => {
-                if (l.title === 'Cancel') {
+                if (l.title === 'Done') {
                   setDropdownIsVisible(false);
                   return;
                   //@ts-ignore

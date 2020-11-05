@@ -23,7 +23,8 @@ const RegisterScreen: React.FC<RegisterScreenProps> = (props) => {
       lastname: lastname,
       password: password,
       items: [],
-      id: Math.random() * 1000,
+      //@ts-ignore
+      id: (Math.random() * 1000).toString(),
     });
     if (resp) {
       console.log('RESP', resp);

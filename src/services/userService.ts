@@ -18,7 +18,11 @@ export const getUsers = async () => {
 export const editUser = async (user: User) => {
   let data;
   await axios
-    .put('http://localhost:2000/user', user)
+    .put('http://localhost:2000/user', JSON.stringify({user: user}), {
+      headers: {
+        'content-type': 'application/json',
+      },
+    })
     .then((r) => {
       data = r.data;
     })

@@ -36,7 +36,11 @@ export const postProduct = async (product: Product) => {
 export const editProduct = async (product: Product) => {
   let data;
   await axios
-    .put('http://localhost:2000/product', product)
+    .put('http://localhost:2000/product', JSON.stringify({product: product}), {
+      headers: {
+        'content-type': 'application/json',
+      },
+    })
     .then((r) => {
       data = r.data;
     })
