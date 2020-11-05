@@ -2,7 +2,7 @@ import React from 'react';
 import {View} from 'react-native';
 import {connect} from 'react-redux';
 import WarehouseCards from '../../../../components/WarehouseCards';
-import {ReduxState} from '../../../../types';
+import {ReduxState} from '../../../../Types';
 import {WarehouseScreenProps} from '../../Types';
 
 const WarehouseScreen: React.FC<WarehouseScreenProps> = (props) => {

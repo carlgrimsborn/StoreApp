@@ -14,8 +14,9 @@ import ProductCard from '../../../../components/ProductCard';
 import {ScrollView} from 'react-native-gesture-handler';
 import {BottomSheet, Button, Input, ListItem} from 'react-native-elements';
 import {Modal, View, StyleSheet, Text, TouchableHighlight} from 'react-native';
-import {postProduct} from '../../../../services/ProductService';
+
 import {login} from '../../../../services/UserService';
+import {postProduct} from '../../../../services/ProductService';
 
 const ProductScreen: React.FC<ProductScreenProps> = (props) => {
   const [modalVisible, setModalVisible] = useState(false);

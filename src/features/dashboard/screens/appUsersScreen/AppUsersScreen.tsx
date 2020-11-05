@@ -2,7 +2,7 @@ import React from 'react';
 import {View} from 'react-native';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {ReduxState} from '../../../../types';
+import {ReduxState} from '../../../../Types';
 import {AppUsersScreenProps} from '../../Types';
 import {setUsers} from '../../../../actions/AllUsersActions';
 import {ScrollView} from 'react-native-gesture-handler';

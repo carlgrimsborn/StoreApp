@@ -2,7 +2,7 @@ import React from 'react';
 import {View, Text, ScrollView} from 'react-native';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {ReduxState} from '../../../../types';
+import {ReduxState} from '../../../../Types';
 import {AppProductsScreenProps} from '../../Types';
 import {setProducts} from '../../../../actions/ProductActions';
 import ProductCard from '../../../../components/ProductCard';

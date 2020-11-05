@@ -9,11 +9,11 @@ import {setAuth} from '../../actions/AuthActions';
 import {setWarehouses} from '../../actions/WarehouseActions';
 import {setUsers} from '../../actions/AllUsersActions';
 import {setProducts} from '../../actions/ProductActions';
-import {getUsers, login, loginDev, register} from '../../services/UserService';
 import {AuthType, Product, ReduxState, User} from '../../Types';
 import {getProducts} from '../../services/ProductService';
 import {getWarehouses} from '../../services/WarehouseService';
 import {LoginScreenProps} from './types';
+import {login, loginDev, getUsers} from '../../services/UserService';
 
 const LoginScreen: React.FC<LoginScreenProps> = (props) => {
   const [email, setEmail] = useState('King.Clifford@gmail.com'); //123@123.com
