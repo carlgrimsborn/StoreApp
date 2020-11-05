@@ -18,7 +18,11 @@ export const getProducts = async () => {
 export const postProduct = async (product: Product) => {
   let data;
   await axios
-    .post('http://localhost:2000/product', product)
+    .post('http://localhost:2000/product', JSON.stringify({product: product}), {
+      headers: {
+        'content-type': 'application/json',
+      },
+    })
     .then((r) => {
       data = r.data;
     })

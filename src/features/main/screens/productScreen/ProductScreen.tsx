@@ -5,8 +5,10 @@ import {bindActionCreators} from 'redux';
 import {
   ProductPeriod,
   ProductSize,
+  ProductStatus,
   ProductType,
   ReduxState,
+  WarehouseName,
 } from '../../../../Types';
 import {ProductScreenProps} from '../../Types';
 import {setUser} from '../../../../actions/UserActions';
@@ -14,16 +16,47 @@ import ProductCard from '../../../../components/ProductCard';
 import {ScrollView} from 'react-native-gesture-handler';
 import {Button, Input} from 'react-native-elements';
 import {Modal, View, StyleSheet, Text, TouchableHighlight} from 'react-native';
+import {postProduct} from '../../../../services/ProductService';
+import {login} from '../../../../services/UserService';
 
 const ProductScreen: React.FC<ProductScreenProps> = (props) => {
   const [modalVisible, setModalVisible] = useState(false);
-  const [name, setName] = useState<string>('');
-  const [toDate, seToDate] = useState<string>();
-  const [fromDate, setFromDate] = useState<string>();
-  const [length, setLength] = useState<string>();
-  const [width, setWidth] = useState<string>();
-  const [height, setHeigth] = useState<string>();
-  const [type, setType] = useState<string>();
+  const [name, setName] = useState<string>('example');
+  const [toDate, seToDate] = useState<string>('2020-07-12');
+  const [fromDate, setFromDate] = useState<string>('2020-07-13');
+  const [length, setLength] = useState<string>('1');
+  const [width, setWidth] = useState<string>('1');
+  const [height, setHeigth] = useState<string>('1');
+  const [type, setType] = useState<string>('Furniture');
+
+  const postItem = async () => {
+    const resp = await postProduct({
+      id: Math.random() * 1000,
+      name: name,
+      ownerId: props.state.UserReducer.id.toString(),
+      period: {fromDate: fromDate, toDate: toDate},
+      size: {
+        height: parseInt(height),
+        length: parseInt(length),
+        width: parseInt(width),
+      },
+      status: ProductStatus.ACTIVE,
+      type: type as ProductType,
+      warehouse: WarehouseName.Hatchworks,
+    });
+    if (resp) {
+      console.log(resp);
+      const respuser = await login(
+        props.state.UserReducer.email,
+        props.state.UserReducer.password,
+      );
+      if (respuser) {
+        props.setUser(respuser);
+      } else alert('Failed to upload');
+    } else {
+      alert('Failed to upload');
+    }
+  };
   return (
     <View style={{flex: 1}}>
       <ScrollView style={{flex: 1}}>
@@ -83,9 +116,9 @@ const ProductScreen: React.FC<ProductScreenProps> = (props) => {
               onChangeText={(e) => setType(e)}></Input>
             <TouchableHighlight
               style={{...styles.openButton, backgroundColor: '#2196F3'}}
-              onPress={() => {
+              onPress={async () => {
+                await postItem();
                 setModalVisible(!modalVisible);
-                alert('TODO: POST');
               }}>
               <Text style={styles.textStyle}>Done</Text>
             </TouchableHighlight>
