@@ -18,6 +18,7 @@ import {
   faUsers,
   faWarehouse,
 } from '@fortawesome/free-solid-svg-icons';
+import RegisterScreen from '../features/login/RegisterScreen';
 
 const NavigationComponent: React.FC<{state: ReduxState}> = (props) => {
   const Stack = createStackNavigator();
@@ -79,6 +80,7 @@ const NavigationComponent: React.FC<{state: ReduxState}> = (props) => {
   const LoginStack = () => (
     <Stack.Navigator>
       <Stack.Screen name="Welcome" component={LoginScreen} />
+      <Stack.Screen name="Register" component={RegisterScreen} />
     </Stack.Navigator>
   );
   return (

@@ -6,6 +6,7 @@ import {UserScreenProps} from '../../Types';
 import {cleanUser} from '../../../../actions/UserActions';
 import {setAuth} from '../../../../actions/AuthActions';
 import {AuthType, ReduxState} from '../../../../Types';
+import {Text, Button} from 'react-native-elements';
 
 const UserScreen: React.FC<UserScreenProps> = (props) => {
   const doLogout = () => {

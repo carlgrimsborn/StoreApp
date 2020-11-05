@@ -3,14 +3,14 @@ import {View, Text, ActivityIndicator} from 'react-native';
 import {Button, Input} from 'react-native-elements';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import LoginScreenProps from './Types';
+import {LoginScreenProps} from './Types';
 import {setUser} from '../../actions/UserActions';
 import {setDev} from '../../actions/DevActions';
 import {setAuth} from '../../actions/AuthActions';
 import {setWarehouses} from '../../actions/WarehouseActions';
 import {setUsers} from '../../actions/AllUsersActions';
 import {setProducts} from '../../actions/ProductActions';
-import {getUsers, login, loginDev} from '../../services/UserService';
+import {getUsers, login, loginDev, register} from '../../services/UserService';
 import {AuthType, Product, ReduxState, User} from '../../Types';
 import {getProducts} from '../../services/ProductService';
 import {getWarehouses} from '../../services/WarehouseService';
@@ -19,6 +19,8 @@ const LoginScreen: React.FC<LoginScreenProps> = (props) => {
   const [email, setEmail] = useState('123@123.com'); //King.Clifford@gmail.com
   const [password, setPassword] = useState('12345');
   const [loading, setLoading] = useState(false);
+
+  console.log('Auth', props.state.AuthReducer.authenticated);
 
   const doLoginUser = async () => {
     setLoading(true);
@@ -82,6 +84,11 @@ const LoginScreen: React.FC<LoginScreenProps> = (props) => {
           onPress={async () => {
             await doLoginDev();
           }}></Button>
+        <Button
+          style={{margin: 3}}
+          title="Register"
+          buttonStyle={{backgroundColor: 'red'}}
+          onPress={() => props.navigation.navigate('Register')}></Button>
       </View>
       {loading ? (
         <ActivityIndicator

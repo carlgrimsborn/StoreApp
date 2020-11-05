@@ -1,5 +1,6 @@
 export type LoginStack = {
-  LoginScreen: undefined;
+  Login: undefined;
+  Register: undefined;
 };
 
 export type MainStack = {

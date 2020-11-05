@@ -9,7 +9,7 @@ import {
   Warehouse,
 } from '../../Types';
 
-export default interface LoginScreenProps {
+export interface LoginScreenProps {
   setUser: (user: User) => void;
   setDev: (dev: Dev) => void;
   setAuth: (auth: Authentication) => void;
@@ -17,5 +17,12 @@ export default interface LoginScreenProps {
   setProducts: (products: Product[]) => void;
   setWarehouses: (warehouse: Warehouse) => void;
   state: ReduxState;
-  navigation: StackNavigationProp<LoginStack, 'LoginScreen'>;
+  navigation: StackNavigationProp<LoginStack, 'Login'>;
+}
+
+export interface RegisterScreenProps {
+  setAuth: (auth: Authentication) => void;
+  setUser: (user: User) => void;
+  state: ReduxState;
+  navigation: StackNavigationProp<LoginStack, 'Register'>;
 }

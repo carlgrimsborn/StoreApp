@@ -70,7 +70,11 @@ export const login = async (email: string, password: string) => {
 export const register = async (user: User) => {
   let data;
   await axios
-    .post('http://localhost:2000/register', user)
+    .post('http://localhost:2000/register', JSON.stringify({user: user}), {
+      headers: {
+        'content-type': 'application/json',
+      },
+    })
     .then((r) => {
       data = r.data;
     })
