@@ -12,7 +12,10 @@ const AppProductsScreen: React.FC<AppProductsScreenProps> = (props) => {
     <View style={{flex: 1}}>
       <ScrollView style={{flex: 1}}>
         {props.state.ProductReducer.map((product) => (
-          <ProductCard item={product} key={product.id}></ProductCard>
+          <ProductCard
+            item={product}
+            key={product.id}
+            users={props.state.AllUsersReducer}></ProductCard>
         ))}
       </ScrollView>
     </View>
