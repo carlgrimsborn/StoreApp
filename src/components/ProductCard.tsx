@@ -60,7 +60,7 @@ const ProductCard: React.FC<ProductCardProps> = (props) => {
     if (props.users) {
       props.users.map((user) => {
         {
-          console.log('AAA', user.id + props.item.ownerId);
+          console.log('ID', user.id + props.item.ownerId);
         }
         if (user.id.toString() === props.item.ownerId.toString()) {
           value = user.surname + ' ' + user.lastname;
