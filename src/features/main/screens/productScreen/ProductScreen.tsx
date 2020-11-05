@@ -3,8 +3,6 @@ import React, {useState} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {
-  ProductPeriod,
-  ProductSize,
   ProductStatus,
   ProductType,
   ReduxState,
@@ -14,7 +12,7 @@ import {ProductScreenProps} from '../../Types';
 import {setUser} from '../../../../actions/UserActions';
 import ProductCard from '../../../../components/ProductCard';
 import {ScrollView} from 'react-native-gesture-handler';
-import {Button, Input} from 'react-native-elements';
+import {BottomSheet, Button, Input, ListItem} from 'react-native-elements';
 import {Modal, View, StyleSheet, Text, TouchableHighlight} from 'react-native';
 import {postProduct} from '../../../../services/ProductService';
 import {login} from '../../../../services/UserService';
@@ -24,10 +22,24 @@ const ProductScreen: React.FC<ProductScreenProps> = (props) => {
   const [name, setName] = useState<string>('example');
   const [toDate, seToDate] = useState<string>('2020-07-12');
   const [fromDate, setFromDate] = useState<string>('2020-07-13');
-  const [length, setLength] = useState<string>('1');
-  const [width, setWidth] = useState<string>('1');
-  const [height, setHeigth] = useState<string>('1');
+  const [length, setLength] = useState<string>('1000');
+  const [width, setWidth] = useState<string>('500');
+  const [height, setHeigth] = useState<string>('600');
   const [type, setType] = useState<string>('Furniture');
+
+  const [dropdownIsVisible, setDropdownIsVisible] = useState(false);
+  const list = [
+    {title: 'Furniture', value: 'Furniture'},
+    {title: 'Electronics', value: 'Electronics'},
+    {title: 'Vehicle', value: 'Vehicle'},
+    {title: 'Cardboard', value: 'Cardboard'},
+    {
+      title: 'Cancel',
+      containerStyle: {backgroundColor: 'red'},
+      titleStyle: {color: 'white'},
+      onPress: () => setDropdownIsVisible(false),
+    },
+  ];
 
   const postItem = async () => {
     const resp = await postProduct({
@@ -36,9 +48,9 @@ const ProductScreen: React.FC<ProductScreenProps> = (props) => {
       ownerId: props.state.UserReducer.id.toString(),
       period: {fromDate: fromDate, toDate: toDate},
       size: {
-        height: parseInt(height),
-        length: parseInt(length),
-        width: parseInt(width),
+        height: parseInt(height) * 0.01,
+        length: parseInt(length) * 0.01,
+        width: parseInt(width) * 0.01,
       },
       status: ProductStatus.ACTIVE,
       type: type as ProductType,
@@ -70,7 +82,6 @@ const ProductScreen: React.FC<ProductScreenProps> = (props) => {
           title="Add Product"
           onPress={() => setModalVisible(!modalVisible)}></Button>
       </View>
-
       <Modal
         animationType="slide"
         transparent={true}
@@ -99,21 +110,21 @@ const ProductScreen: React.FC<ProductScreenProps> = (props) => {
               value={fromDate}
               onChangeText={(e) => setFromDate(e)}></Input>
             <Input
-              placeholder="length"
+              placeholder="length (cm)"
               value={length}
               onChangeText={(e) => setLength(e)}></Input>
             <Input
-              placeholder="width"
+              placeholder="width (cm)"
               value={width}
               onChangeText={(e) => setWidth(e)}></Input>
             <Input
-              placeholder="height"
+              placeholder="height (cm)"
               value={height}
               onChangeText={(e) => setHeigth(e)}></Input>
-            <Input
-              placeholder="type"
-              value={type}
-              onChangeText={(e) => setType(e)}></Input>
+            <Button
+              style={{marginBottom: 10}}
+              title={type}
+              onPress={() => setDropdownIsVisible(true)}></Button>
             <TouchableHighlight
               style={{...styles.openButton, backgroundColor: '#2196F3'}}
               onPress={async () => {
@@ -122,8 +133,33 @@ const ProductScreen: React.FC<ProductScreenProps> = (props) => {
               }}>
               <Text style={styles.textStyle}>Done</Text>
             </TouchableHighlight>
+            <TouchableHighlight
+              style={{...styles.openButton, backgroundColor: 'red'}}
+              onPress={async () => {
+                setModalVisible(!modalVisible);
+              }}>
+              <Text style={styles.textStyle}>Cancel</Text>
+            </TouchableHighlight>
           </View>
         </View>
+        <BottomSheet isVisible={dropdownIsVisible} modalProps={{}}>
+          {list.map((l, i) => (
+            <ListItem
+              key={i}
+              containerStyle={l.containerStyle}
+              onPress={() => {
+                if (l.title === 'Cancel') {
+                  setDropdownIsVisible(false);
+                  return;
+                  //@ts-ignore
+                } else setType(l.value);
+              }}>
+              <ListItem.Content>
+                <ListItem.Title style={l.titleStyle}>{l.title}</ListItem.Title>
+              </ListItem.Content>
+            </ListItem>
+          ))}
+        </BottomSheet>
       </Modal>
     </View>
   );
@@ -166,6 +202,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     padding: 10,
     elevation: 2,
+    marginBottom: 5,
   },
   textStyle: {
     color: 'white',
